@@ -1,0 +1,32 @@
+# Example YAML for the bare minimum of required elements
+swagger: '2.0'
+info:
+  version: "0.0.1"
+  title: waste services
+paths:
+  /collections:
+    get:
+      responses:
+        "200":
+          description:  Returns a list of collection dates.
+  /collections/<UPRN>/:
+  	get:
+  		responses:
+  			"200":
+  				description: Returns a time series list of next collections, across all  services provided at a property.
+
+
+ /services:
+    get:
+      responses:
+        "200":
+          description:  Describes a list of waste services that can be provided to a property / UPRN
+
+
+ /containers:
+    get:
+      responses:
+        "200":
+          description:  Returns a list of containers that maybe ordered for a property
+
+
