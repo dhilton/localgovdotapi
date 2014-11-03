@@ -1,5 +1,5 @@
-localgovdotapi
-==============
+# localgovdotapi
+
 
 An experiment in localgov apis for common services. 
 
@@ -10,25 +10,24 @@ Each service is held in a separate branch, with trunk considered a stable releas
 
 Current services under development:
 
-Waste Services
-==============
+### Waste Services
+
 
 Order a new bin container, check collection dates for a property, order a one off collection, add a new collection service to a property.
 
 
-Concessionary travel & Blue Badges
-==================================
+### Concessionary travel & Blue Badges
+
 
 Order a new concessionary travel card, order a new Blue Badge.
 
-Local tax
-=========
+### Local tax
 
 Apply for a student council tax exemption, apply for a single person council tax discount.
 
 
-Property
-========
+### Property
+
 
 A basic foundation service for descibing property related attributes - maybe GIS derived or delivered.
 
@@ -40,8 +39,8 @@ A basic foundation service for descibing property related attributes - maybe GIS
 
 
 
-Contribution guide
-==================
+## Contribution guide
+
 
 
 Fork the repo on github, checkout a branch for the area you want to work on and then build up your work with local commits on your branch, adding use cases.
