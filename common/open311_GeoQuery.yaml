@@ -1,0 +1,18 @@
+
+
+swagger: '2.0'
+info:
+  version: "2.0"
+  title: Open311 GeoQuery v2
+  description: ""
+
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /v2
+# Open311 supports both json and xml responses.
+produces:
+  - application/json
+  - application/xml
+paths:
