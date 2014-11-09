@@ -1,32 +1,68 @@
-# Example YAML for the bare minimum of required elements
+# this is an example of the Uber API
+# as a demonstration of an API spec in YAML
 swagger: '2.0'
 info:
   version: "0.0.1"
-  title: waste services
+  title: Waste services
+  description: "A set of services to provide and manage a waste service provider"
+
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /v1
+produces:
+  - application/json
 paths:
   /collections:
     get:
+      description:  Returns a list of collection dates.
       responses:
-        "200":
-          description:  Returns a list of collection dates.
-  /collections/<UPRN>/:
-  	get:
-  		responses:
-  			"200":
-  				description: Returns a time series list of next collections, across all  services provided at a property.
+        200:
+          description: An array of collections for a property
+          schema: 
+            type: array
+            items:
+              $ref: Collection
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      parameters:
+        - name: UPRN
+          in: query
+          description: Unique property reference number.
+          required: false
+          type: number
+          format: integer
 
-
- /services:
+  /services:
     get:
       responses:
         "200":
           description:  Describes a list of waste services that can be provided to a property / UPRN
 
 
- /containers:
+  /containers:
     get:
       responses:
         "200":
           description:  Returns a list of containers that maybe ordered for a property
 
 
+
+definitions:
+  Collection:
+    properties:
+      service: 
+        type: string
+
+  Error:
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
