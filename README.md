@@ -1,5 +1,5 @@
 # localgovdotapi
-
+[![Build Status](https://travis-ci.org/dhilton/localgovdotapi.svg?branch=master)](https://travis-ci.org/dhilton/localgovdotapi)
 
 An experiment in localgov apis for common services. 
 
