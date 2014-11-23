@@ -1,25 +1,29 @@
-# this is an example of the Uber API
-# as a demonstration of an API spec in YAML
 swagger: '2.0'
 info:
   version: "0.0.1"
   title: Waste services
   description: "A set of services to provide and manage a waste service provider"
-
 # array of all schemes that your API supports
 schemes:
   - https
 # will be prefixed to all paths
 basePath: /v1
+consumes:
+  - application/json
 produces:
   - application/json
+  - text/calendar
 paths:
-  /collections:
+  /collections/{uprn}:
     get:
-      description:  Returns a list of collection dates.
+      summary: List of collection dates
       responses:
         200:
-          description: An array of collections for a property
+          description: A list of collections for a property
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
           schema: 
             type: array
             items:
@@ -27,36 +31,72 @@ paths:
         default:
           description: unexpected error
           schema:
-            $ref: '#/definitions/Error'
+            $ref: Error
       parameters:
-        - name: UPRN
-          in: query
-          description: Unique property reference number.
-          required: false
-          type: number
-          format: integer
-
+        - name: uprn
+          in: path
+          description: The UPRN of the property for which you are enquiring about.
+          type: int32
   /services:
     get:
       responses:
-        "200":
+        200:
           description:  Describes a list of waste services that can be provided to a property / UPRN
-
-
   /containers:
     get:
       responses:
-        "200":
+        200:
           description:  Returns a list of containers that maybe ordered for a property
-
-
 
 definitions:
   Collection:
     properties:
       service: 
         type: string
-
+      collection_date:
+        type: string
+        format: date
+  Container:
+    properties:
+      container_id:
+        type: string
+        description: Unique identifier representing a specific container. Could be a SKU for example.
+      container_description:
+        type: string
+        description: Description of container, including the uses for that container.
+      display_name:
+        type: string
+        description: Display name of container, a friendly name for the container (cardboard bag, green box, etc)
+      container_type:
+        type: string
+        description: What type of container is it? A wheelie bin, a box, a bag, a dustbin, a sack, etc.
+      lockable:
+        type: string
+        description: Is the container lockable? Options are 'true' or 'false'
+      reusable:
+        type: string
+        description: Is the container reusable? Options are 'true' or 'false'
+      capacity:
+        type: integer
+        format: int32
+        description: Capacity of container in litres. 
+      colour_model:
+        type: string
+        description: Enumerated type represeting what colour model or scheme is used. List is RGB, RAL, HEX
+      colour_value:
+        type: string
+        description: The value of the colour. See examples and documentation for more background and formatting
+      price:
+        type: number
+        format: float
+        description: The price in pounds stering (GBP) of the container to buy as a user. 
+      cost:
+        type: number
+        format: float        
+        description: The cost in pounds sterling (GBP) of the container to the organisation.
+      image:
+        type: string
+        description: Image URL representing the container.
   Error:
     properties:
       code:
