@@ -97,6 +97,34 @@ definitions:
       image:
         type: string
         description: Image URL representing the container.
+    Service:
+      properties:
+        service_id:
+          type: string
+          description: A service id.
+        name:
+          type: string
+          description: A service name, should be user friendly, i.e. Bulky waste, rubbish.
+        unit_delivery_timeframe:
+          type: string
+          description: An enumerated string representing a timeframe of delivery, i.e. is the service delivered once, daily, weekly, monthly, yearly.
+        price_per_unit:
+          type: number
+          format: float
+          description: The price in pounds stering GBP of the service to buy as a user per unit delivery timeframe year, single, week, etc
+        cost_per_unit:
+          type: number
+          format: float        
+          description: The cost in pounds sterling GBP of the service to provide per unit delivery timeframe to the organisation.
+        esd_uri:
+          type: string
+          description: uri to esd linked data item
+        service_description:
+          type: string
+          description: A service definition for a user to understand what this service accepts and how it operates.
+        instructions:
+          type: string
+          description: A set of service specific instructions around a collection service.
   Error:
     properties:
       code:
